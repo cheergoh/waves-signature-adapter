@@ -36,7 +36,9 @@ export class Signable {
             this._adapter.getPublicKey(),
             this._adapter.getAddress()
         ]).then(([senderPublicKey, sender]) => {
+            console.log(`-->Signable sender:${sender}, senderPublicKey:${senderPublicKey},forSignData:${forSign.data}`);
             const dataForSign = this._prepare.sign({ sender, senderPublicKey, ...forSign.data });
+            console.log(`-->data for sign:${dataForSign}`);
             return new generator(dataForSign).getBytes();
         });
     }
